@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Banking System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <h2>{{ request.user }}  Account details</h2>
+    <br><br><br>
+    <div class="container">
+
+    <form class="form-inline" action="{% url 'transection'%}" method="POST">
+        {%csrf_token %}
+        <label for="amount" class="mr-sm-2">Amount</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter amount" name="amount">
+        <label for="pwd" class="mr-sm-2">Event</label>
+        <select class="form-control mb-2 mr-sm-2" placeholder="Enter event" name="event" id="pwd">
+            <option value="Deposit">Withdraw</option>
+            <option value="Deposit">Deposit</option>
+        </select>
+        
+        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    </form>
+</div>
+
+
+
+
+  
+              
+  <table class="table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Account No.</th>
+        <th>Amount</th>
+        <th>status</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% block account_details%}
+        {% if account_details %}
+        {% for account in account_details %}
+      <tr>
+           <td>{{ forloop.counter }}</td>
+           <td>{{account.user.username}}</td>
+            <td>{{account.user.email}}</td>
+        
+            <td>{{account.account_no}}</td>
+            <td>{{account.amount}}</td>
+            <td>{{account.status}}</td>
+      </tr>
+      {% endfor %}
+      {%endif%}    
+      {%endblock  %} 
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

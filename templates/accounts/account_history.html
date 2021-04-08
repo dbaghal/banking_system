@@ -1,0 +1,51 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Banking System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>User Account list</h2>
+              
+  <table class="table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Account No.</th>
+        <th>Amount</th>
+        <th>status</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% block account_details%}
+        {% if account_details %}
+        {% for account in account_details %}
+      <tr>
+           <td>1</td>
+           <td>{{account.user.username}}</td>
+            <td>{{account.user.email}}</td>
+        
+            <td>{{account.account_no}}</td>
+            <td>{{account.amount}}</td>
+            <td>{{account.status}}</td>
+      </tr>
+      {% endfor %}
+      {%endif%}    
+      {%endblock  %} 
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
